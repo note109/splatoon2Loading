@@ -5,6 +5,9 @@
   "repository": "https://github.com/note109/splatoon2Loading.git",
   "author": "tanishi109 <hayakawa@goodpatch.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "gulp"
+  },
   "dependencies": {
     "babel": "^6.5.2",
     "babel-core": "^6.22.1",
