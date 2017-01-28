@@ -35,7 +35,7 @@ gulp.task("sass", () => {
     .pipe(gulp.dest("dest/styles"))
 });
 
-gulp.task("default", ["assets", "webserver"], () => {
+gulp.task("default", ["js", "html", "sass", "assets", "webserver"], () => {
   gulp.watch("./app/styles/*.scss", ["sass"]);
   gulp.watch(["./app/views/*.html", "./app/*.html"], ["html"]);
   gulp.watch("./app/scripts/*.js", ["js"]);
