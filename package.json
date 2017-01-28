@@ -4,5 +4,18 @@
   "main": "index.js",
   "repository": "https://github.com/note109/splatoon2Loading.git",
   "author": "tanishi109 <hayakawa@goodpatch.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "babel": "^6.5.2",
+    "babel-core": "^6.22.1",
+    "babel-plugin-transform-function-bind": "^6.22.0",
+    "babel-preset-es2015": "^6.22.0",
+    "browser-sync": "^2.18.6",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-load-plugins": "^1.4.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-webserver": "^0.9.1"
+  }
 }
