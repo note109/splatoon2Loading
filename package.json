@@ -1,0 +1,8 @@
+{
+  "name": "splatoon2Loading",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/note109/splatoon2Loading.git",
+  "author": "tanishi109 <hayakawa@goodpatch.com>",
+  "license": "MIT"
+}
