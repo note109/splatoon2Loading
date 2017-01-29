@@ -1,5 +1,6 @@
 let ctx;
 let stage;
+let pattern;
 
 // Debugger for position
 $('#stage').on('click', (e) => {
@@ -19,19 +20,73 @@ $(() => {
   img.src = "../assets/calliePattern.png";
 
   img.onload = () => {
+    pattern = ctx.createPattern(img, "");
 
-    const pattern = ctx.createPattern(img, "");
-
-    ctx.beginPath();
-    ctx.fillStyle = pattern;
-
-    ctx.moveTo(100, 30);
-    ctx.lineTo(100, 75);
-    ctx.lineTo(80, 75);
-    ctx.fill();
-
+    const tri = new Triangle();
+    new Stage([tri]);
   };
 
 });
+
+/**
+  
+*/
+class Triangle {
+  constructor() {
+    this.top1 = {x: 100, y: 30};
+    this.top2 = {x: 100, y: 75};
+    this.top3 = {x: 80, y: 75};
+  }
+
+  render() {
+    ctx.beginPath();
+    ctx.fillStyle = pattern;
+
+    ctx.moveTo(this.top1.x, this.top1.y);
+    ctx.lineTo(this.top2.x, this.top2.y);
+    ctx.lineTo(this.top3.x, this.top3.y);
+    ctx.fill();
+  }
+
+}
+
+/**
+  Stage for draw shapes
+*/
+class Stage {
+  /**
+    @param {array} contents - instanses of shapes. Each has render() method.
+  */
+  constructor(contents = []) {
+    this.canvas = document.getElementById('stage');
+    this.contents = contents;
+
+    this.init();
+  }
+
+  /**
+    Initialize canvas and start render.
+  */
+  init() {
+    this.width = $('.wrapper').width();
+    this.height = $('.wrapper').height();
+    this.canvas.setAttribute('width', this.width);
+    this.canvas.setAttribute('height', this.height);
+
+    this.render();
+  }
+
+  /**
+    Render contents to canvas every animationFrame.
+  */
+  render() {
+    ctx.clearRect(0, 0, this.width, this.height);
+
+    this.contents.forEach((cnt) => {
+      cnt.render();
+    });
+    requestAnimationFrame(::this.render);
+  }
+}
 
 
