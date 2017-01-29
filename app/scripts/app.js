@@ -39,12 +39,18 @@ class Triangle {
     this.top1 = {x: 100, y: 30};
     this.top2 = {x: 100, y: 75};
     this.top3 = {x: 80, y: 75};
+
+    this.rotation = 0;
   }
 
   /**
     render triangle
   */
   render() {
+    ctx.save();
+
+    ctx.rotate(this.rotation * Math.PI / 180);
+
     ctx.beginPath();
     ctx.fillStyle = pattern;
 
@@ -52,6 +58,8 @@ class Triangle {
     ctx.lineTo(this.top2.x, this.top2.y);
     ctx.lineTo(this.top3.x, this.top3.y);
     ctx.fill();
+
+    ctx.restore();
   }
 
 }
