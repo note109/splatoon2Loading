@@ -25,8 +25,14 @@ $(() => {
     const triangle = new Triangle();
     stage = new Stage();
     stage.contents = [triangle];
+
+    window.onload = function() {
+      const gui = new dat.GUI();
+      gui.add(triangle, 'rotation', 0, 360);
+    };
   };
 });
+
 
 /**
   Triangle shape
