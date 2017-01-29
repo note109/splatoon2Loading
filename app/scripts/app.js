@@ -64,6 +64,7 @@ class Triangle {
     ctx.lineTo(this.center.x - this.top2.x, this.center.y - this.top2.y);
     ctx.lineTo(this.center.x - this.top3.x, this.center.y - this.top3.y);
 
+    // fill image need not rotate.
     ctx.rotate(-this.rotation * Math.PI / 180);
     ctx.fill();
 
