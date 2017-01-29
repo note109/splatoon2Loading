@@ -17,27 +17,33 @@ $(() => {
   ctx = canvas.getContext('2d');
 
   const img = new Image();
-  img.src = "../assets/calliePattern.png";
+  img.src = '../assets/calliePattern.png';
 
   img.onload = () => {
-    pattern = ctx.createPattern(img, "");
+    pattern = ctx.createPattern(img, '');
 
-    const tri = new Triangle();
-    new Stage([tri]);
+    const triangle = new Triangle();
+    stage = new Stage();
+    stage.contents = [triangle];
   };
-
 });
 
 /**
-  
+  Triangle shape
 */
 class Triangle {
+  /**
+    initialize top value
+  */
   constructor() {
     this.top1 = {x: 100, y: 30};
     this.top2 = {x: 100, y: 75};
     this.top3 = {x: 80, y: 75};
   }
 
+  /**
+    render triangle
+  */
   render() {
     ctx.beginPath();
     ctx.fillStyle = pattern;
