@@ -40,9 +40,9 @@ class Triangle {
     initialize top value
   */
   constructor() {
-    this.top1 = {x: 100, y: 30};
-    this.top2 = {x: 100, y: 75};
-    this.top3 = {x: 80, y: 75};
+    this.top1 = {x: 150, y: 30};
+    this.top2 = {x: 150, y: 175};
+    this.top3 = {x: 60, y: 175};
     this.center = this.getCenter();
 
     this.rotation = 30;
