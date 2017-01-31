@@ -2,6 +2,9 @@ let ctx;
 let stage;
 let pattern;
 
+let mouseX = 0;
+let mouseY = 0;
+
 // Debugger for position
 $('#stage').on('click', (e) => {
   const rect = e.target.getBoundingClientRect();
@@ -9,6 +12,8 @@ $('#stage').on('click', (e) => {
   const y = e.clientY - rect.top;
 
   console.log(x, y);
+  mouseX = x;
+  mouseY = y;
 });
 
 // Init
@@ -41,6 +46,9 @@ class Triangle {
   */
   constructor() {
     this.top1 = {x: 150, y: 30};
+
+    this.top1_1 = {x: 150, y: 70};
+
     this.top2 = {x: 150, y: 175};
     this.top3 = {x: 60, y: 175};
     this.center = this.getCenter();
@@ -60,7 +68,21 @@ class Triangle {
     ctx.beginPath();
     ctx.fillStyle = pattern;
 
-    ctx.moveTo(this.center.x - this.top1.x, this.center.y - this.top1.y);
+    const x0 = this.center.x - this.top1.x;
+    const y0 = this.center.y - this.top1.y;
+    const x2 = this.center.x - this.top1_1.x;
+    const y2 = this.center.y - this.top1_1.y;
+
+    ctx.moveTo(x0, y0);
+
+    // TODO: 座標回転
+    const tx = mouseX - this.center.x;
+    const ty = mouseY - this.center.y;
+    const cpX = tx * 2 - (x0 + x2) / 2;
+    const cpY = ty * 2 - (y0 + y2) / 2;
+
+    ctx.quadraticCurveTo(cpX, cpY, x2, y2);
+
     ctx.lineTo(this.center.x - this.top2.x, this.center.y - this.top2.y);
     ctx.lineTo(this.center.x - this.top3.x, this.center.y - this.top3.y);
 
