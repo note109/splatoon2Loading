@@ -36,7 +36,6 @@ $(() => {
   };
 });
 
-
 /**
   Triangle shape
 */
@@ -62,8 +61,10 @@ class Triangle {
   render() {
     ctx.save();
 
+    const angle = this.rotation * Math.PI / 180;
+
     ctx.translate(this.center.x, this.center.y);
-    ctx.rotate(this.rotation * Math.PI / 180);
+    ctx.rotate(angle);
 
     ctx.beginPath();
     ctx.fillStyle = pattern;
@@ -75,9 +76,11 @@ class Triangle {
 
     ctx.moveTo(x0, y0);
 
-    // TODO: 座標回転
-    const tx = mouseX - this.center.x;
-    const ty = mouseY - this.center.y;
+    const txBase = mouseX - this.center.x;
+    const tyBase = mouseY - this.center.y;
+    const tx = Math.cos(-angle) * txBase - Math.sin(-angle) * tyBase;
+    const ty = Math.cos(-angle) * tyBase + Math.sin(-angle) * txBase;
+
     const cpX = tx * 2 - (x0 + x2) / 2;
     const cpY = ty * 2 - (y0 + y2) / 2;
 
