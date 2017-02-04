@@ -14,6 +14,8 @@ $('#stage').on('click', (e) => {
   console.log(x, y);
   mouseX = x;
   mouseY = y;
+
+  $('#input').attr('value', `${x}, ${y}`);
 });
 
 // Init
