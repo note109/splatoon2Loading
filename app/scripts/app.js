@@ -44,12 +44,14 @@ class Triangle {
     initialize top value
   */
   constructor() {
-    this.top1 = {x: 150, y: 30};
+    this.top1 = new Point(150, 30);
 
-    this.top1_1 = {x: 150, y: 70};
+    this.top1_05 = new Point(150, 50);
 
-    this.top2 = {x: 150, y: 175};
-    this.top3 = {x: 60, y: 175};
+    this.top1_1 = new Point(150, 70);
+
+    this.top2 = new Point(150, 175);
+    this.top3 = new Point(60, 175);
     this.center = this.getCenter();
 
     this.rotation = 30;
@@ -76,8 +78,8 @@ class Triangle {
 
     ctx.moveTo(x0, y0);
 
-    const txBase = mouseX - this.center.x;
-    const tyBase = mouseY - this.center.y;
+    const txBase = this.center.x - this.top1_05.x;
+    const tyBase = this.center.y - this.top1_05.y;
     const tx = Math.cos(-angle) * txBase - Math.sin(-angle) * tyBase;
     const ty = Math.cos(-angle) * tyBase + Math.sin(-angle) * txBase;
 
@@ -105,6 +107,20 @@ class Triangle {
     const y = (this.top1.y + this.top2.y + this.top3.y) / 3;
 
     return {x, y};
+  }
+}
+
+/**
+  Point for polygon
+*/
+class Point {
+  /**
+    @param {number} x - x position
+    @param {number} y - y position
+  */
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
   }
 }
 
