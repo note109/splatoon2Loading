@@ -69,9 +69,9 @@ class Triangle {
     ctx.beginPath();
     ctx.fillStyle = pattern;
 
-    ctx.moveTo(this.top1.x - this.center.x, this.top1.y - this.center.y);
-    ctx.lineTo(this.top2.x - this.center.x, this.top2.y - this.center.y);
-    ctx.lineTo(this.top3.x - this.center.x, this.top3.y - this.center.y);
+    ctx.moveTo(...this.getTranslatedPos(this.top1));
+    ctx.lineTo(...this.getTranslatedPos(this.top2));
+    ctx.lineTo(...this.getTranslatedPos(this.top3));
     ctx.closePath();
 
     // fill image need not rotate.
@@ -101,6 +101,13 @@ class Triangle {
     return radian * 180 / Math.PI;
   }
 
+  getTranslatedPos(pos) {
+    const x = pos.x - this.center.x;
+    const y = pos.y - this.center.y;
+
+    return [x, y];
+  }
+
   /**
     get center position of triangle
     @return {object} {x, y}
@@ -116,8 +123,9 @@ class Triangle {
     render arc
   */
   renderArc() {
-    const pointX = this.top1_1.x - this.center.x;
-    const pointY = this.top1_1.y - this.center.y;
+    const points = this.getTranslatedPos(this.top1_1);
+    const pointX = points[0];
+    const pointY = points[1];
 
     const dx = pointX;
     const dy = pointY;
