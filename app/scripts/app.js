@@ -101,6 +101,11 @@ class Triangle {
     return radian * 180 / Math.PI;
   }
 
+  /**
+    get position relative to center.
+    @param {object} pos - pos.x / pos.y
+    @return {array} [x, y]
+  */
   getTranslatedPos(pos) {
     const x = pos.x - this.center.x;
     const y = pos.y - this.center.y;
@@ -165,7 +170,15 @@ class Point {
   }
 }
 
+/**
+  Point for Arc
+*/
 class ArcPoint extends Point {
+  /**
+    @param {number} x - x position
+    @param {number} y - y position
+    @param {number} endAngle - end position of arc
+  */
   constructor(x, y, endAngle) {
     super(x, y);
 
