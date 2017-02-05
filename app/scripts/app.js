@@ -65,10 +65,8 @@ class Triangle {
   render() {
     ctx.save();
 
-    const angle = this.rotation * Math.PI / 180;
-
     ctx.translate(this.center.x, this.center.y);
-    ctx.rotate(angle);
+    ctx.rotate(this.getRadian());
 
     ctx.beginPath();
     ctx.fillStyle = pattern;
@@ -98,6 +96,13 @@ class Triangle {
     ctx.fill();
 
     ctx.restore();
+  }
+
+  /**
+    get radian from this.angle
+  */
+  getRadian() {
+    return this.rotation * Math.PI / 180;
   }
 
   /**
