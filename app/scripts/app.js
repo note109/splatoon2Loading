@@ -85,6 +85,7 @@ class Triangle {
 
   /**
     get radian from this.angle
+    @return {number} radian
   */
   getRadian() {
     return this.rotation * Math.PI / 180;
