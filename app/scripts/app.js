@@ -48,7 +48,7 @@ class Triangle {
   constructor() {
     this.top1 = new Point(150, 30);
 
-    this.top1_1 = new Point(140, 30);
+    this.top1_1 = new ArcPoint(140, 30, 30);
 
     this.top2 = new Point(150, 175);
     this.top3 = new Point(60, 175);
@@ -133,7 +133,7 @@ class Triangle {
 
     const baseRadian = Math.atan2(pointY, pointX);
     const beginRadian = baseRadian + this.getRadian();
-    const endRadian = this.getRadian(30);
+    const endRadian = this.getRadian(this.top1_1.endAngle);
 
     const distance = this.getAngle(beginRadian) - this.getAngle(endRadian);
 
@@ -162,6 +162,14 @@ class Point {
   constructor(x, y) {
     this.x = x;
     this.y = y;
+  }
+}
+
+class ArcPoint extends Point {
+  constructor(x, y, endAngle) {
+    super(x, y);
+
+    this.endAngle = endAngle;
   }
 }
 
