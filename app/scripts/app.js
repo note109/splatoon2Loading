@@ -71,25 +71,10 @@ class Triangle {
     ctx.beginPath();
     ctx.fillStyle = pattern;
 
-    const x0 = this.top1.x - this.center.x;
-    const y0 = this.top1.y - this.center.y;
-    const x2 = this.top1_1.x - this.center.x;
-    const y2 = this.top1_1.y - this.center.y;
-
-    ctx.moveTo(x0, y0);
-
-    const txBase = this.center.x - this.top1_05.x;
-    const tyBase = this.center.y - this.top1_05.y;
-    const tx = Math.cos(-angle) * txBase - Math.sin(-angle) * tyBase;
-    const ty = Math.cos(-angle) * tyBase + Math.sin(-angle) * txBase;
-
-    const cpX = tx * 2 - (x0 + x2) / 2;
-    const cpY = ty * 2 - (y0 + y2) / 2;
-
-    ctx.quadraticCurveTo(cpX, cpY, x2, y2);
-
+    ctx.moveTo(this.top1.x - this.center.x, this.top1.y - this.center.y);
     ctx.lineTo(this.top2.x - this.center.x, this.top2.y - this.center.y);
     ctx.lineTo(this.top3.x - this.center.x, this.top3.y - this.center.y);
+    ctx.closePath();
 
     // fill image need not rotate.
     ctx.rotate(-this.rotation * Math.PI / 180);
