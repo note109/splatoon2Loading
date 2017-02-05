@@ -48,8 +48,6 @@ class Triangle {
   constructor() {
     this.top1 = new Point(150, 30);
 
-    this.top1_05 = new Point(150, 50);
-
     this.top1_1 = new Point(140, 30);
 
     this.top2 = new Point(150, 175);
