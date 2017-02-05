@@ -124,6 +124,12 @@ class Triangle {
     const beginRadian = baseRadian + this.getRadian();
     const endRadian = this.getRadian(30);
 
+    const distance = this.getAngle(beginRadian) - this.getAngle(endRadian);
+
+    if (distance < 0 || distance > 180) {
+      return;
+    }
+
     ctx.beginPath();
     ctx.arc(0, 0, d, beginRadian, endRadian, true);
 
