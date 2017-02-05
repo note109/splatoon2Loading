@@ -92,6 +92,13 @@ class Triangle {
   }
 
   /**
+    get angle from radian
+  */
+  getAngle(radian) {
+    return radian * 180 / Math.PI;
+  }
+
+  /**
     get center position of triangle
     @return {object} {x, y}
   */
@@ -116,7 +123,7 @@ class Triangle {
     const startAngle = Math.atan2(pointY, pointX);
 
     ctx.beginPath();
-    ctx.arc(0, 0, d, startAngle + this.getRadian(), this.getRadian() * -1, true);
+    ctx.arc(0, 0, d, startAngle + this.getRadian(), this.getRadian(30), true);
 
     ctx.lineWidth = 20;
     ctx.lineCap = 'round';
