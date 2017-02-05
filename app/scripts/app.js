@@ -80,6 +80,8 @@ class Triangle {
     ctx.rotate(-this.rotation * Math.PI / 180);
     ctx.fill();
 
+    this.renderArc();
+
     ctx.restore();
   }
 
@@ -99,6 +101,28 @@ class Triangle {
     const y = (this.top1.y + this.top2.y + this.top3.y) / 3;
 
     return {x, y};
+  }
+
+  /**
+    render arc
+  */
+  renderArc() {
+    const pointX = this.top1_1.x - this.center.x;
+    const pointY = this.top1_1.y - this.center.y;
+
+    const dx = pointX;
+    const dy = pointY;
+    const d = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
+
+    const startAngle = Math.atan2(pointY, pointX);
+
+    ctx.beginPath();
+    ctx.arc(0, 0, d, startAngle + this.getRadian(), this.getRadian() * -1, true);
+
+    ctx.lineWidth = 20;
+    ctx.lineCap = 'round';
+    ctx.strokeStyle = pattern;
+    ctx.stroke();
   }
 }
 
