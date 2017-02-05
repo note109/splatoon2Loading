@@ -120,10 +120,12 @@ class Triangle {
     const dy = pointY;
     const d = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
 
-    const startAngle = Math.atan2(pointY, pointX);
+    const baseRadian = Math.atan2(pointY, pointX);
+    const beginRadian = baseRadian + this.getRadian();
+    const endRadian = this.getRadian(30);
 
     ctx.beginPath();
-    ctx.arc(0, 0, d, startAngle + this.getRadian(), this.getRadian(30), true);
+    ctx.arc(0, 0, d, beginRadian, endRadian, true);
 
     ctx.lineWidth = 20;
     ctx.lineCap = 'round';
