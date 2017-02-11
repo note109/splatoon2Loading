@@ -34,7 +34,7 @@ $(() => {
     stage.contents = [triangle];
 
     const gui = new dat.GUI();
-    gui.add(triangle, 'rotation', 0, 360);
+    gui.add(triangle, 'rotation', 0, 1);
   };
 });
 
