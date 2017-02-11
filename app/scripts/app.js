@@ -62,6 +62,8 @@ class Triangle {
     this.top2 = new Point(150, 175);
     this.top3 = new Point(60, 175);
     this.center = this.getCenter();
+
+    this.topArray = [this.top1, this.top2, this.top3];
     this.arcArray = [this.arc1, this.arc2];
 
     this.addRotation = 0.05;
@@ -72,18 +74,12 @@ class Triangle {
     render triangle
   */
   render() {
-    const top1 = this.getTranslatedPos(this.top1);
-    const top2 = this.getTranslatedPos(this.top2);
-    const top3 = this.getTranslatedPos(this.top3);
+    this.topArray.forEach((top) => {
+      const pos = this.getTranslatedPos(top);
 
-    this.top1.x = top1[0] + this.center.x;
-    this.top1.y = top1[1] + this.center.y;
-
-    this.top2.x = top2[0] + this.center.x;
-    this.top2.y = top2[1] + this.center.y;
-
-    this.top3.x = top3[0] + this.center.x;
-    this.top3.y = top3[1] + this.center.y;
+      top.x = pos[0] + this.center.x;
+      top.y = pos[1] + this.center.y;
+    });
 
     ctx.save();
     ctx.translate(this.center.x, this.center.y);
