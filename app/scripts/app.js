@@ -129,7 +129,7 @@ class Triangle {
   getTranslatedPos(basePos, rotation = this.rotation) {
     const x = basePos.x - this.center.x;
     const y = basePos.y - this.center.y;
-    const pos = rotatePos(x, y, rotation);
+    const pos = rotatePos(x, y, this.getRadian(rotation));
 
     return pos;
   }
