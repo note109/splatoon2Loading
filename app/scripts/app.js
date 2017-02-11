@@ -35,6 +35,7 @@ $(() => {
 
     const gui = new dat.GUI();
     gui.add(triangle, 'addRotation', 0, 1);
+    gui.add(triangle, 'rotation').listen();
   };
 });
 
@@ -64,6 +65,7 @@ class Triangle {
     this.arcArray = [this.arc1, this.arc2];
 
     this.addRotation = 0.05;
+    this.rotation = 0;
   }
 
   /**
@@ -101,6 +103,7 @@ class Triangle {
     });
 
     ctx.restore();
+    this.rotation += this.addRotation;
   }
 
   /**
