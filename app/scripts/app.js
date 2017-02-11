@@ -70,18 +70,18 @@ class Triangle {
     render triangle
   */
   render() {
-    const afterTop1 = this.getTranslatedPos(this.top1);
-    const afterTop2 = this.getTranslatedPos(this.top2);
-    const afterTop3 = this.getTranslatedPos(this.top3);
+    const top1 = this.getTranslatedPos(this.top1);
+    const top2 = this.getTranslatedPos(this.top2);
+    const top3 = this.getTranslatedPos(this.top3);
 
-    this.top1.x = afterTop1[0] + this.center.x;
-    this.top1.y = afterTop1[1] + this.center.y;
+    this.top1.x = top1[0] + this.center.x;
+    this.top1.y = top1[1] + this.center.y;
 
-    this.top2.x = afterTop2[0] + this.center.x;
-    this.top2.y = afterTop2[1] + this.center.y;
+    this.top2.x = top2[0] + this.center.x;
+    this.top2.y = top2[1] + this.center.y;
 
-    this.top3.x = afterTop3[0] + this.center.x;
-    this.top3.y = afterTop3[1] + this.center.y;
+    this.top3.x = top3[0] + this.center.x;
+    this.top3.y = top3[1] + this.center.y;
 
     ctx.save();
     ctx.translate(this.center.x, this.center.y);
