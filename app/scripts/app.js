@@ -48,11 +48,13 @@ class Triangle {
   constructor() {
     this.top1 = new Point(150, 30);
 
-    this.top1_1 = new ArcPoint(140, 30, 30);
+    this.arc1 = new ArcPoint(140, 30, 30);
+    this.arc2 = new ArcPoint(140, 60, 60);
 
     this.top2 = new Point(150, 175);
     this.top3 = new Point(60, 175);
     this.center = this.getCenter();
+    this.arcArray = [this.arc1, this.arc2];
 
     this.rotation = 30;
   }
@@ -78,7 +80,9 @@ class Triangle {
     ctx.rotate(-this.rotation * Math.PI / 180);
     ctx.fill();
 
-    this.renderArc();
+    this.arcArray.forEach((arc) => {
+      this.renderArc(arc);
+    });
 
     ctx.restore();
   }
@@ -126,9 +130,10 @@ class Triangle {
 
   /**
     render arc
+    TODO: remove arc rendering from Triangle class.
   */
-  renderArc() {
-    const points = this.getTranslatedPos(this.top1_1);
+  renderArc(arc) {
+    const points = this.getTranslatedPos(arc);
     const pointX = points[0];
     const pointY = points[1];
 
@@ -138,7 +143,7 @@ class Triangle {
 
     const baseRadian = Math.atan2(pointY, pointX);
     const beginRadian = baseRadian + this.getRadian();
-    const endRadian = this.getRadian(this.top1_1.endAngle);
+    const endRadian = this.getRadian(arc.endAngle);
 
     const distance = this.getAngle(beginRadian) - this.getAngle(endRadian);
 
