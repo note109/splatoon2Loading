@@ -161,18 +161,11 @@ class Triangle {
     const dy = pointY;
     const d = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
 
-    const baseRadian = Math.atan2(pointY, pointX);
-    const beginRadian = baseRadian + this.getRadian();
-    const endRadian = this.getRadian(arc.endAngle);
-
-    const distance = this.getAngle(beginRadian) - this.getAngle(endRadian);
-
-    if (distance < 0 || distance > 180) {
-      return;
-    }
+    const beginRadian = this.getRadian(-90);
+    const endRadian = this.getRadian(this.rotation - 90);
 
     ctx.beginPath();
-    ctx.arc(0, 0, d, beginRadian, endRadian, true);
+    ctx.arc(0, 0, d, beginRadian, endRadian, false);
 
     ctx.lineWidth = 20;
     ctx.lineCap = 'round';
