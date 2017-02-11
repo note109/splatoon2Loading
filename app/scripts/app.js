@@ -34,7 +34,7 @@ $(() => {
     stage.contents = [triangle];
 
     const gui = new dat.GUI();
-    gui.add(triangle, 'rotation', 0, 1);
+    gui.add(triangle, 'addRotation', 0, 1);
   };
 });
 
@@ -63,7 +63,7 @@ class Triangle {
     this.center = this.getCenter();
     this.arcArray = [this.arc1, this.arc2];
 
-    this.rotation = 0.05;
+    this.addRotation = 0.05;
   }
 
   /**
@@ -108,7 +108,7 @@ class Triangle {
     @param {number} angle
     @return {number} radian
   */
-  getRadian(angle = this.rotation) {
+  getRadian(angle) {
     return angle * Math.PI / 180;
   }
 
@@ -126,7 +126,7 @@ class Triangle {
     @param {object} basePos - pos.x / pos.y
     @return {array} [x, y]
   */
-  getTranslatedPos(basePos, rotation = this.rotation) {
+  getTranslatedPos(basePos, rotation = this.addRotation) {
     const x = basePos.x - this.center.x;
     const y = basePos.y - this.center.y;
     const pos = rotatePos(x, y, this.getRadian(rotation));
