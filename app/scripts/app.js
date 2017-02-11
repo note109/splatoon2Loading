@@ -38,6 +38,13 @@ $(() => {
   };
 });
 
+const rotatePos = (baseX, baseY, angle) => {
+  const x = Math.cos(angle) * baseX - Math.sin(angle) * baseY;
+  const y = Math.cos(angle) * baseY + Math.sin(angle) * baseX;
+
+  return [x, y];
+};
+
 /**
   Triangle shape
 */
@@ -56,17 +63,28 @@ class Triangle {
     this.center = this.getCenter();
     this.arcArray = [this.arc1, this.arc2];
 
-    this.rotation = 30;
+    this.rotation = 0.05;
   }
 
   /**
     render triangle
   */
   render() {
-    ctx.save();
+    const afterTop1 = this.getTranslatedPos(this.top1);
+    const afterTop2 = this.getTranslatedPos(this.top2);
+    const afterTop3 = this.getTranslatedPos(this.top3);
 
+    this.top1.x = afterTop1[0] + this.center.x;
+    this.top1.y = afterTop1[1] + this.center.y;
+
+    this.top2.x = afterTop2[0] + this.center.x;
+    this.top2.y = afterTop2[1] + this.center.y;
+
+    this.top3.x = afterTop3[0] + this.center.x;
+    this.top3.y = afterTop3[1] + this.center.y;
+
+    ctx.save();
     ctx.translate(this.center.x, this.center.y);
-    ctx.rotate(this.getRadian());
 
     ctx.beginPath();
     ctx.fillStyle = pattern;
@@ -76,8 +94,6 @@ class Triangle {
     ctx.lineTo(...this.getTranslatedPos(this.top3));
     ctx.closePath();
 
-    // fill image need not rotate.
-    ctx.rotate(-this.rotation * Math.PI / 180);
     ctx.fill();
 
     this.arcArray.forEach((arc) => {
@@ -107,14 +123,15 @@ class Triangle {
 
   /**
     get position relative to center.
-    @param {object} pos - pos.x / pos.y
+    @param {object} basePos - pos.x / pos.y
     @return {array} [x, y]
   */
-  getTranslatedPos(pos) {
-    const x = pos.x - this.center.x;
-    const y = pos.y - this.center.y;
+  getTranslatedPos(basePos, rotation = this.rotation) {
+    const x = basePos.x - this.center.x;
+    const y = basePos.y - this.center.y;
+    const pos = rotatePos(x, y, rotation);
 
-    return [x, y];
+    return pos;
   }
 
   /**
