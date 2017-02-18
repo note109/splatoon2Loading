@@ -163,6 +163,13 @@ class Triangle {
     const beginRadian = this.getRadian(arc.beginAngle);
     const endRadian = Math.atan2(arc.y - this.center.y, arc.x - this.center.x);
 
+    const beginAngle = this.getAngle(beginRadian);
+    const endAngle = this.getAngle(endRadian);
+
+    if (beginAngle > endAngle || beginAngle + 90 < endAngle) {
+      return;
+    }
+
     ctx.beginPath();
     ctx.arc(0, 0, d, beginRadian, endRadian, false);
 
