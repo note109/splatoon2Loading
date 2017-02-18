@@ -13,6 +13,36 @@
   </div>
   <input type="" id="input" />
 
+  <!-- filters -->
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+      <!-- Goo filter -->
+      <defs>
+        <filter id="goo">
+            <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="7" />
+            <feColorMatrix mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 32 -7" result="goo" />
+            <feGaussianBlur in="goo" stdDeviation="3" result="shadow" />
+            <feBlend in2="goo" in="SourceGraphic" result="mix" />
+        </filter>
+      </defs>
+
+      <!-- Distortion -->
+      <defs>
+        <filter id="displacementFilter">
+          <feTurbulence type="fractalNoise" baseFrequency="0.015"
+              numOctaves="2" result="turbulence"/>
+          <feDisplacementMap in2="turbulence" in="SourceGraphic"
+              scale="50" xChannelSelector="R" yChannelSelector="G"/>
+        </filter>
+      </defs>
+      <defs>
+        <filter id="displacementFilterSub">
+          <feTurbulence type="fractalNoise" baseFrequency="0.015"
+              numOctaves="2" in="shadow" result="turbulence"/>
+          <feDisplacementMap in2="turbulence" in="SourceGraphic"
+              scale="30" xChannelSelector="R" yChannelSelector="G"/>
+        </filter>
+      </defs>
+  </svg>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.6.0/dat.gui.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.4.1/snap.svg-min.js"></script>
