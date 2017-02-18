@@ -79,6 +79,8 @@ class Triangle {
     this.addRotation = 0.05;
     this.rotation = 90;
 
+    this.timer = 0;
+
     this.init();
   }
 
@@ -98,6 +100,15 @@ class Triangle {
     render triangle
   */
   render() {
+    const e = easeInOutQuad(this.timer, 0, 1, 30);
+
+    if (e > 0) {
+      this.addRotation = 0.05 + e * 5;
+    } else {
+      this.addRotation = 0;
+      this.timer = 0;
+    }
+
     [...this.topArray, ...this.arcArray].forEach((top) => {
       const pos = this.getTranslatedPos(top);
 
@@ -124,6 +135,7 @@ class Triangle {
 
     ctx.restore();
     this.rotation += this.addRotation;
+    this.timer++;
   }
 
   /**
