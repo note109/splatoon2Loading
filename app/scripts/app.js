@@ -166,7 +166,8 @@ class Triangle {
     const beginAngle = this.getAngle(beginRadian);
     const endAngle = this.getAngle(endRadian);
 
-    if (beginAngle > endAngle || beginAngle + 90 < endAngle) {
+    if (beginAngle > endAngle || beginAngle + 180 < endAngle) {
+      arc.initBeginAngle();
       return;
     }
 
@@ -208,7 +209,12 @@ class ArcPoint extends Point {
   constructor(x, y, beginAngle) {
     super(x, y);
 
+    this._beginAngle = beginAngle;
     this.beginAngle = beginAngle;
+  }
+
+  initBeginAngle() {
+    this.beginAngle = this._beginAngle;
   }
 }
 
