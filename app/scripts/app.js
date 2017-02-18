@@ -46,6 +46,12 @@ const rotatePos = (baseX, baseY, angle) => {
   return [x, y];
 };
 
+/**
+  @param {number} t current time
+  @param {number} b start value
+  @param {number} c max value in change
+  @param {number} d duration time
+*/
 const easeInOutQuad = (t, b, c, d) => {
   t /= d/2;
   if (t < 1) return c/2*t*t + b;
