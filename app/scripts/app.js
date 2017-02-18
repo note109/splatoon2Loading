@@ -70,7 +70,21 @@ class Triangle {
     this.arcArray = [this.arc1, this.arc2, this.arc3];
 
     this.addRotation = 0.05;
-    this.rotation = 0;
+    this.rotation = 90;
+
+    this.init();
+  }
+
+  /**
+    initialize top position by initial rotation value.
+  */
+  init() {
+    [...this.topArray, ...this.arcArray].forEach((top) => {
+      const pos = this.getTranslatedPos(top, this.rotation);
+
+      top.x = pos[0] + this.center.x;
+      top.y = pos[1] + this.center.y;
+    });
   }
 
   /**
