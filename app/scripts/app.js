@@ -157,7 +157,7 @@ class Triangle {
     const dy = pointY;
     const d = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
 
-    const beginRadian = this.getRadian(-90);
+    const beginRadian = this.getRadian(arc.beginAngle);
     const endRadian = Math.atan2(arc.y - this.center.y, arc.x - this.center.x);
 
     ctx.beginPath();
@@ -191,12 +191,12 @@ class ArcPoint extends Point {
   /**
     @param {number} x - x position
     @param {number} y - y position
-    @param {number} endAngle - end position of arc
+    @param {number} beginAngle - begin position of arc
   */
-  constructor(x, y, endAngle) {
+  constructor(x, y, beginAngle) {
     super(x, y);
 
-    this.endAngle = endAngle;
+    this.beginAngle = beginAngle;
   }
 }
 
