@@ -166,7 +166,7 @@ class Triangle {
     ctx.beginPath();
     ctx.arc(0, 0, d, beginRadian, endRadian, false);
 
-    ctx.lineWidth = 20;
+    ctx.lineWidth = 10;
     ctx.lineCap = 'round';
     ctx.strokeStyle = pattern;
     ctx.stroke();
