@@ -173,6 +173,8 @@ class Triangle {
     ctx.beginPath();
     ctx.arc(0, 0, d, beginRadian, endRadian, false);
 
+    arc.beginAngle -= this.addRotation * 0.25;
+
     ctx.lineWidth = 10;
     ctx.lineCap = 'round';
     ctx.strokeStyle = pattern;
