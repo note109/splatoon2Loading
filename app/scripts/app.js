@@ -140,6 +140,7 @@ class Triangle {
   /**
     get position relative to center.
     @param {object} basePos - pos.x / pos.y
+    @param {number} rotation - rotation
     @return {array} [x, y]
   */
   getTranslatedPos(basePos, rotation = this.addRotation) {
