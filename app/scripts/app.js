@@ -74,7 +74,7 @@ class Triangle {
     render triangle
   */
   render() {
-    this.topArray.forEach((top) => {
+    [...this.topArray, ...this.arcArray].forEach((top) => {
       const pos = this.getTranslatedPos(top);
 
       top.x = pos[0] + this.center.x;
@@ -158,7 +158,7 @@ class Triangle {
     const d = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
 
     const beginRadian = this.getRadian(-90);
-    const endRadian = this.getRadian(this.rotation - 90);
+    const endRadian = Math.atan2(arc.y - this.center.y, arc.x - this.center.x);
 
     ctx.beginPath();
     ctx.arc(0, 0, d, beginRadian, endRadian, false);
