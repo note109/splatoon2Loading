@@ -56,15 +56,18 @@ class Triangle {
   constructor() {
     this.top1 = new Point(150, 30);
 
-    this.arc1 = new ArcPoint(140, 30, 30);
-    this.arc2 = new ArcPoint(140, 60, 60);
+    this.arc1 = new ArcPoint(140, 30, 0 + 45);
+    this.arc2 = new ArcPoint(140, 60, 0 + 45);
 
     this.top2 = new Point(150, 175);
     this.top3 = new Point(60, 175);
+
+    this.arc3 = new ArcPoint(150, 175, -90 + -45);
+
     this.center = this.getCenter();
 
     this.topArray = [this.top1, this.top2, this.top3];
-    this.arcArray = [this.arc1, this.arc2];
+    this.arcArray = [this.arc1, this.arc2, this.arc3];
 
     this.addRotation = 0.05;
     this.rotation = 0;
