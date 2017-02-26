@@ -3,7 +3,7 @@ export default class Shape {
     const cm = this.getCircleMatrix();
     const tm = this.getTriangleMatrix();
 
-    const distanceMap = cm.map((_posAry, i) => {
+    this.distanceMap = cm.map((_posAry, i) => {
       const cPosAry = cm[i];
       const tPosAry = tm[i];
 
@@ -15,16 +15,18 @@ export default class Shape {
       });
     });
 
-    this.duration = 90;
-    this.accelMap = distanceMap.map((ary, i) => {
+    this.matrix = tm;
+    this.ctx = document.getElementById("stage").getContext("2d");
+  }
+
+  getAccelMap(duration) {
+    return this.distanceMap.map((ary, i) => {
       return ary.map((distance, j) => {
-        const accelPerFps = distance / this.duration;
+        const accelPerFps = distance / duration;
 
         return accelPerFps;
       });
     });
-    this.matrix = tm;
-    this.ctx = document.getElementById("stage").getContext("2d");
   }
 
   render() {
@@ -43,10 +45,12 @@ export default class Shape {
 
   * morphGen() {
     while(true) {
+      const accelMap = this.getAccelMap(60);
+
       const cm = this.getCircleMatrix();
       const nextMatrix = this.matrix.map((posAry, i) => {
         return posAry.map((pos, j) => {
-          const nextPos = pos + this.accelMap[i][j] * 1;
+          const nextPos = pos + accelMap[i][j] * 1;
 
           return nextPos;
         });
@@ -64,10 +68,12 @@ export default class Shape {
 
   * reMorphGen() {
     while(true) {
+      const accelMap = this.getAccelMap(30);
+
       const tm = this.getTriangleMatrix();
       const nextMatrix = this.matrix.map((posAry, i) => {
         return posAry.map((pos, j) => {
-          const nextPos = pos + this.accelMap[i][j] * -1;
+          const nextPos = pos + accelMap[i][j] * -1;
 
           return nextPos;
         });
