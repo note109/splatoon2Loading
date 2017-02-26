@@ -80,14 +80,14 @@ export default class Shape {
   }
 
   * morphGen() {
+    let n = 60;
     const distanceMap = this.getDistanceMap(
       this.getCircleMatrix(),
       this.getTriangleMatrix(),
     );
-    const accelMap = this.getAccelMap(distanceMap, 60);
-    const cm = this.getCircleMatrix();
+    const accelMap = this.getAccelMap(distanceMap, n);
 
-    while(true) {
+    while(n--) {
       const nextMatrix = this.matrix.map((posAry, i) => {
         return posAry.map((pos, j) => {
           const nextPos = pos + accelMap[i][j] * 1;
@@ -96,10 +96,6 @@ export default class Shape {
         });
       });
 
-      if (nextMatrix[0][0] >= cm[0][0]) {
-        break;
-      }
-
       this.matrix = nextMatrix;
 
       yield;
@@ -107,14 +103,14 @@ export default class Shape {
   }
 
   * reMorphGen() {
+    let n = 60;
     const distanceMap = this.getDistanceMap(
       this.getCircleMatrix(),
       this.getTriangleMatrix([0.25, 1]),
     );
-    const accelMap = this.getAccelMap(distanceMap, 60);
-    const tm = this.getTriangleMatrix();
+    const accelMap = this.getAccelMap(distanceMap, n);
 
-    while(true) {
+    while(n--) {
       const nextMatrix = this.matrix.map((posAry, i) => {
         return posAry.map((pos, j) => {
           const nextPos = pos + accelMap[i][j] * -1;
@@ -122,10 +118,6 @@ export default class Shape {
           return nextPos;
         });
       });
-
-      if (nextMatrix[0][0] <= tm[0][0]) {
-        break;
-      }
 
       this.matrix = nextMatrix;
 
