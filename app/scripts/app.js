@@ -1,3 +1,5 @@
+import "babel-polyfill";
+
 let pattern;
 
 import Stage from "./Stage.js";
