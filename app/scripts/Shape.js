@@ -24,20 +24,21 @@ export default class Shape {
       });
     });
     this.matrix = tm;
+    this.ctx = document.getElementById("stage").getContext("2d");
   }
 
   render() {
-    ctx.beginPath();
+    this.ctx.beginPath();
 
     const matrix = this.matrix;
 
     matrix.forEach((pos, i) => {
       const nPos = matrix[(i + 1) % 4];
-      ctx.moveTo(pos[0], pos[1]);
-      ctx.bezierCurveTo(pos[2], pos[3], nPos[4], nPos[5], nPos[0], nPos[1]);
+      this.ctx.moveTo(pos[0], pos[1]);
+      this.ctx.bezierCurveTo(pos[2], pos[3], nPos[4], nPos[5], nPos[0], nPos[1]);
     });
 
-    ctx.stroke();
+    this.ctx.stroke();
   }
 
   *genMorph() {
