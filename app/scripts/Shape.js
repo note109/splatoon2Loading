@@ -3,22 +3,25 @@ export default class Shape {
     const cm = this.getCircleMatrix();
     const tm = this.getTriangleMatrix();
 
-    this.distanceMap = cm.map((_posAry, i) => {
-      const cPosAry = cm[i];
-      const tPosAry = tm[i];
-
-      return cPosAry.map((pos, j) => {
-        const cPos = cPosAry[j];
-        const tPos = tPosAry[j];
-
-        return cPos - tPos;
-      });
-    });
-
+    this.distanceMap = this.getDistanceMap(cm, tm);
     this.matrix = tm;
     this.ctx = document.getElementById("stage").getContext("2d");
 
     this.scale = [1, 1];
+  }
+
+  getDistanceMap(m1, m2) {
+    return m1.map((ary, i) => {
+      const ary1 = m1[i];
+      const ary2 = m2[i];
+
+      return ary1.map((elm, j) => {
+        const elm1 = ary1[j];
+        const elm2 = ary2[j];
+
+        return elm1 - elm2;
+      });
+    });
   }
 
   getAccelMap(duration) {
