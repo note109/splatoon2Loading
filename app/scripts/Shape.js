@@ -63,7 +63,7 @@ export default class Shape {
 
       this.matrix = matrix.map((pos, i) => {
         return pos.map((p, j) => {
-          return p * this.scale[j%2];
+          return p * this.scale[j % 2];
         });
       });
 
