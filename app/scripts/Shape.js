@@ -142,18 +142,25 @@ export default class Shape {
     return matrix;
   }
 
-  getCircleMatrix() {
+  getCircleMatrix(scale = [1, 1]) {
     const r = 50;
     const cx = 50;
     const cy = 50;
     const bz = (4 / 3) * Math.tan(Math.PI / 8) * r;
 
-    return [
+    let matrix = [
       [cx,     cy + r, cx + bz, cy + r,  cx - bz, cy + r],
       [cx + r, cy,     cx + r,  cy - bz, cx + r,  cy + bz],
       [cx,     cy - r, cx - bz, cy - r,  cx + bz, cy - r],
       [cx - r, cy,     cx - r,  cy + bz, cx - r,  cy - bz],
     ];
+    matrix = matrix.map((pos, i) => {
+      return pos.map((p, j) => {
+        return p * scale[j % 2];
+      });
+    });
+
+    return matrix;
   }
 }
 
