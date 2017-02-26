@@ -127,13 +127,21 @@ export default class Shape {
     }
   }
 
-  getTriangleMatrix() {
-    return [
+  getTriangleMatrix(scale = [1, 1]) {
+    let matrix = [
       [0,   100, 0,   100, 0,   100],
       [100, 100, 100, 100, 100, 100],
       [100, 0,   100, 0,   100, 0],
       [50,  50,  50,  50,  50,  50],
     ];
+
+    matrix = matrix.map((pos, i) => {
+      return pos.map((p, j) => {
+          return p * scale[j % 2];
+      });
+    });
+
+    return matrix;
   }
 
   getCircleMatrix() {
