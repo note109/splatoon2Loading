@@ -1,7 +1,7 @@
-let stage;
 let pattern;
 
 import Stage from "./Stage.js";
+import Shape from "./Shape.js";
 
 // Debugger for position
 $("#stage").on("click", (e) => {
@@ -20,8 +20,10 @@ $(() => {
   img.src = "../assets/calliePattern.png";
 
   img.onload = () => {
-    stage = new Stage();
-    stage.contents = [];
+    const stage = new Stage();
+    const shape = new Shape();
+
+    stage.contents = [shape];
     pattern = stage.ctx.createPattern(img, "");
   };
 });
