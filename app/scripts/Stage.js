@@ -3,6 +3,7 @@ export default class Stage {
     this.canvas = document.getElementById("stage");
     this.ctx = this.canvas.getContext("2d");
     this.contents = contents;
+    this.renderingThread = () => {};
 
     this.init();
   }
@@ -22,6 +23,7 @@ export default class Stage {
     this.contents.forEach((cnt) => {
       cnt.render();
     });
+    this.renderingThread();
     requestAnimationFrame(::this.render);
   }
 }
