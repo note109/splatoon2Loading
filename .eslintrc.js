@@ -4,5 +4,6 @@ module.exports = {
   "rules": {
     "quotes": [2, "double"],
     "require-jsdoc": 0,
+    "max-len": 0,
   },
 };
