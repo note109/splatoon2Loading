@@ -105,7 +105,7 @@ export default class Shape {
   * reMorphGen() {
     let n = 60;
     const distanceMap = this.getDistanceMap(
-      this.getCircleMatrix(),
+      this.getCircleMatrix([0.25, 1]),
       this.getTriangleMatrix([0.25, 1]),
     );
     const accelMap = this.getAccelMap(distanceMap, n);
