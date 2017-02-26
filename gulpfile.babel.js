@@ -1,5 +1,9 @@
 import gulp from "gulp"
 import gulpLoadPlugins from "gulp-load-plugins"
+import browserify from "browserify";
+import babelify from "babelify";
+import source from "vinyl-source-stream";
+
 const $ = gulpLoadPlugins();
 
 gulp.task("webserver", function() {
@@ -17,9 +21,10 @@ gulp.task("assets", () => {
 });
 
 gulp.task("js", () => {
-  gulp.src("./app/scripts/*.js")
-    .pipe($.plumber())
-    .pipe($.babel())
+  browserify("./app/scripts/app.js")
+    .transform(babelify)
+    .bundle()
+    .pipe(source("app.js"))
     .pipe(gulp.dest("dest/scripts"))
 });
 
