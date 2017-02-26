@@ -27,5 +27,18 @@ $(() => {
 
     stage.contents = [shape];
     pattern = stage.ctx.createPattern(img, "");
+
+    const renderingTaskGen = function* () {
+      while (1) {
+        yield* shape.morphGen();
+        yield* shape.reMorphGen();
+        yield;
+      }
+    };
+    const renderingTask = renderingTaskGen();
+
+    stage.renderingThread = () => {
+      renderingTask.next();
+    };
   };
 });
