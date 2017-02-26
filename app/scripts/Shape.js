@@ -103,7 +103,7 @@ export default class Shape {
 
   * reMorphGen() {
     while(true) {
-      const accelMap = this.getAccelMap(30);
+      const accelMap = this.getAccelMap(60);
 
       const tm = this.getTriangleMatrix();
       const nextMatrix = this.matrix.map((posAry, i) => {

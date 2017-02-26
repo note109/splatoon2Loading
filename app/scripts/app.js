@@ -31,8 +31,11 @@ $(() => {
     const renderingTaskGen = function* () {
       while (1) {
         yield* shape.morphGen();
+        const matrix = shape.matrix;
+        yield* shape.scaleGen(-0.01, 0.25, matrix);
+        //yield* shape.reMorphGen();
+        yield* shape.scaleGen(0.01, 1, matrix);
         yield* stage.wait(30);
-        yield* shape.reMorphGen();
         yield;
       }
     };
