@@ -41,7 +41,7 @@ export default class Shape {
     this.ctx.stroke();
   }
 
-  *genMorph() {
+  * genMorph() {
     while(true) {
       const cm = this.getCircleMatrix();
       const nextMatrix = this.matrix.map((posAry, i) => {
@@ -62,7 +62,7 @@ export default class Shape {
     }
   }
 
-  *genReMorph() {
+  * genReMorph() {
     while(true) {
       const tm = this.getTriangleMatrix();
       const nextMatrix = this.matrix.map((posAry, i) => {
