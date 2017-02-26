@@ -17,6 +17,8 @@ export default class Shape {
 
     this.matrix = tm;
     this.ctx = document.getElementById("stage").getContext("2d");
+
+    this.scale = [1, 1];
   }
 
   getAccelMap(duration) {
@@ -41,6 +43,32 @@ export default class Shape {
     });
 
     this.ctx.stroke();
+  }
+
+  * scaleGen(addX, stopX, matrix) {
+    while(true) {
+      const scale = [
+        this.scale[0] + addX,
+        this.scale[1],
+      ];
+
+      if (this.scale[0] >= stopX && addX > 0) {
+        break;
+      }
+      if (this.scale[0] <= stopX && addX < 0) {
+        break;
+      }
+
+      this.scale = scale;
+
+      this.matrix = matrix.map((pos, i) => {
+        return pos.map((p, j) => {
+          return p * this.scale[j%2];
+        });
+      });
+
+      yield;
+    }
   }
 
   * morphGen() {
