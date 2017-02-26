@@ -12,7 +12,7 @@ export default class Shape {
         const tPos = tPosAry[j];
 
         return cPos - tPos;
-      })
+      });
     });
 
     this.duration = 90;
