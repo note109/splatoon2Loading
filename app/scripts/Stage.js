@@ -17,6 +17,12 @@ export default class Stage {
     this.render();
   }
 
+  * wait(loopFrame) {
+    while (loopFrame--) {
+      yield;
+    }
+  }
+
   render() {
     this.ctx.clearRect(0, 0, this.width, this.height);
 
