@@ -1,9 +1,7 @@
 export default class Shape {
   constructor() {
-    const cm = this.getCircleMatrix();
     const tm = this.getTriangleMatrix();
 
-    this.distanceMap = this.getDistanceMap(cm, tm);
     this.matrix = tm;
     this.ctx = document.getElementById("stage").getContext("2d");
 
