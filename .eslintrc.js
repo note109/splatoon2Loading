@@ -3,6 +3,6 @@ module.exports = {
   "extends": "google",
   "rules": {
     "quotes": [2, "double"],
-    "require-jsdoc": [2, false],
+    "require-jsdoc": 0,
   },
 };
