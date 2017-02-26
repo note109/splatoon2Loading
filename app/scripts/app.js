@@ -2,6 +2,8 @@ let ctx;
 let stage;
 let pattern;
 
+import Stage from "./Stage.js";
+
 // Debugger for position
 $('#stage').on('click', (e) => {
   const rect = e.target.getBoundingClientRect();
@@ -28,44 +30,3 @@ $(() => {
     stage.contents = [];
   };
 });
-
-/**
-  Stage for draw shapes
-*/
-class Stage {
-  /**
-    @param {array} contents - instanses of shapes. Each has render() method.
-  */
-  constructor(contents = []) {
-    this.canvas = document.getElementById('stage');
-    this.contents = contents;
-
-    this.init();
-  }
-
-  /**
-    Initialize canvas and start render.
-  */
-  init() {
-    this.width = $('.wrapper').width();
-    this.height = $('.wrapper').height();
-    this.canvas.setAttribute('width', this.width);
-    this.canvas.setAttribute('height', this.height);
-
-    this.render();
-  }
-
-  /**
-    Render contents to canvas every animationFrame.
-  */
-  render() {
-    ctx.clearRect(0, 0, this.width, this.height);
-
-    this.contents.forEach((cnt) => {
-      cnt.render();
-    });
-    requestAnimationFrame(::this.render);
-  }
-}
-
-
