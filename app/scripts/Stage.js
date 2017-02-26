@@ -1,17 +1,17 @@
 export default class Stage {
   constructor(contents = []) {
-    this.canvas = document.getElementById('stage');
-    this.ctx = this.canvas.getContext('2d');
+    this.canvas = document.getElementById("stage");
+    this.ctx = this.canvas.getContext("2d");
     this.contents = contents;
 
     this.init();
   }
 
   init() {
-    this.width = $('.wrapper').width();
-    this.height = $('.wrapper').height();
-    this.canvas.setAttribute('width', this.width);
-    this.canvas.setAttribute('height', this.height);
+    this.width = $(".wrapper").width();
+    this.height = $(".wrapper").height();
+    this.canvas.setAttribute("width", this.width);
+    this.canvas.setAttribute("height", this.height);
 
     this.render();
   }
