@@ -24,8 +24,8 @@ export default class Shape {
     });
   }
 
-  getAccelMap(duration) {
-    return this.distanceMap.map((ary, i) => {
+  getAccelMap(distanceMap, duration) {
+    return distanceMap.map((ary, i) => {
       return ary.map((distance, j) => {
         const accelPerFps = distance / duration;
 
@@ -82,10 +82,14 @@ export default class Shape {
   }
 
   * morphGen() {
-    while(true) {
-      const accelMap = this.getAccelMap(60);
+    const distanceMap = this.getDistanceMap(
+      this.getCircleMatrix(),
+      this.getTriangleMatrix(),
+    );
+    const accelMap = this.getAccelMap(distanceMap, 60);
+    const cm = this.getCircleMatrix();
 
-      const cm = this.getCircleMatrix();
+    while(true) {
       const nextMatrix = this.matrix.map((posAry, i) => {
         return posAry.map((pos, j) => {
           const nextPos = pos + accelMap[i][j] * 1;
@@ -105,10 +109,14 @@ export default class Shape {
   }
 
   * reMorphGen() {
-    while(true) {
-      const accelMap = this.getAccelMap(60);
+    const distanceMap = this.getDistanceMap(
+      this.getCircleMatrix(),
+      this.getTriangleMatrix([0.25, 1]),
+    );
+    const accelMap = this.getAccelMap(distanceMap, 60);
+    const tm = this.getTriangleMatrix();
 
-      const tm = this.getTriangleMatrix();
+    while(true) {
       const nextMatrix = this.matrix.map((posAry, i) => {
         return posAry.map((pos, j) => {
           const nextPos = pos + accelMap[i][j] * -1;
