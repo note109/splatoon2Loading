@@ -71,6 +71,13 @@ export default class Shape {
     }
   }
 
+  * rotateGen() {
+    while(true) {
+
+      yield;
+    }
+  }
+
   * morphGen() {
     while(true) {
       const accelMap = this.getAccelMap(60);
