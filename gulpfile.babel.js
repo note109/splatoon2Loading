@@ -24,6 +24,7 @@ gulp.task("js", () => {
   browserify("./app/scripts/app.js")
     .transform(babelify)
     .bundle()
+    .on("error", (e) => console.log(e))
     .pipe(source("app.js"))
     .pipe(gulp.dest("dest/scripts"))
 });
