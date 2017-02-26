@@ -1,6 +1,7 @@
 export default class Stage {
   constructor(contents = []) {
     this.canvas = document.getElementById('stage');
+    this.ctx = this.canvas.getContext('2d');
     this.contents = contents;
 
     this.init();
@@ -16,7 +17,7 @@ export default class Stage {
   }
 
   render() {
-    ctx.clearRect(0, 0, this.width, this.height);
+    this.ctx.clearRect(0, 0, this.width, this.height);
 
     this.contents.forEach((cnt) => {
       cnt.render();

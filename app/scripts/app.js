@@ -1,4 +1,3 @@
-let ctx;
 let stage;
 let pattern;
 
@@ -17,16 +16,12 @@ $('#stage').on('click', (e) => {
 
 // Init
 $(() => {
-  const canvas = document.getElementById('stage');
-  ctx = canvas.getContext('2d');
-
   const img = new Image();
   img.src = '../assets/calliePattern.png';
 
   img.onload = () => {
-    pattern = ctx.createPattern(img, '');
-
     stage = new Stage();
     stage.contents = [];
+    pattern = stage.ctx.createPattern(img, '');
   };
 });
