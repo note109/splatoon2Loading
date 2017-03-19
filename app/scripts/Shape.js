@@ -81,9 +81,12 @@ export default class Shape {
   }
 
   * rotateGen() {
-    while(true) {
+    let duration = 30;
+    const rotation = 60;
+    const accel = rotation / duration;
 
-
+    while(duration--) {
+      this.angle += accel;
       yield;
     }
   }

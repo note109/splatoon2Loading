@@ -30,6 +30,7 @@ $(() => {
 
     const renderingTaskGen = function* () {
       while (1) {
+        yield* shape.rotateGen();
         yield* shape.morphGen();
 
         const matrix = shape.matrix;
