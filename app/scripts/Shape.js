@@ -75,9 +75,7 @@ export default class Shape {
     this.scale = scale;
   }
 
-  * rotateGen() {
-    let duration = 30;
-    const rotation = 60;
+  * rotateGen(rotation = 60, duration = 30) {
     const accel = rotation / duration;
 
     while(duration--) {
