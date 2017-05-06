@@ -41,7 +41,7 @@ $(() => {
       yield* shape.rotateGen(40, 20);
       yield* yieldAll([
         shape.rotateGen(20, 10),
-        shape.morphGen(shape.getCircleMatrix(), shape.getTriangleMatrix(), 30),
+        shape.morphGen(shape.getCircleMatrix(), 30),
       ]);
 
       yield* shape.rotateGen(270, 10);
@@ -50,7 +50,7 @@ $(() => {
       shape.switchPattern();
 
       yield* yieldAll([
-        shape.morphGen(shape.getTriangleMatrix(), shape.getCircleMatrix(), 1),
+        shape.morphGen(shape.getTriangleMatrix(), 1),
         shape.scaleGen([1, 1], 15),
       ]);
 

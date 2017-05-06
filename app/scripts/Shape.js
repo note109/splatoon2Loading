@@ -113,8 +113,8 @@ export default class Shape {
     }
   }
 
-  * morphGen(matrixA, matrixB, n = 30) {
-    const distanceMap = this.getDistanceMap(matrixA, matrixB);
+  * morphGen(matrixA, n = 30) {
+    const distanceMap = this.getDistanceMap(matrixA, this.matrix);
     const accelMap = this.getAccelMap(distanceMap, n);
 
     while(n--) {
