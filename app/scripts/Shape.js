@@ -162,7 +162,7 @@ export default class Shape {
 
     matrix = matrix.map((pos) => {
       return pos.map((p, j) => {
-        return p - center[j % 2];
+        return p - center[j % 2] * 0.5;
       });
     });
 
@@ -195,7 +195,7 @@ export default class Shape {
 
     matrix = matrix.map((pos) => {
       return pos.map((p, j) => {
-        return p - center[j % 2];
+        return p - center[j % 2] * 0.5;
       });
     });
 
