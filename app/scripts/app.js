@@ -31,43 +31,37 @@ $("#stage").on("click", (e) => {
 
 // Init
 $(() => {
-  const img = new Image();
-  img.src = "../assets/calliePattern.png";
+  const stage = new Stage();
+  const shape = new Shape();
 
-  img.onload = () => {
-    const stage = new Stage();
-    const shape = new Shape();
+  stage.contents = [shape];
 
-    stage.contents = [shape];
-    pattern = stage.ctx.createPattern(img, "");
+  const renderingTaskGen = function* () {
+    while (1) {
+      yield* shape.rotateGen(60, 30);
 
-    const renderingTaskGen = function* () {
-      while (1) {
-        yield* shape.rotateGen(60, 30);
+      yield* yieldAll([
+        shape.rotateGen(30, 15),
+        shape.morphGen(),
+      ]);
 
-        yield* yieldAll([
-          shape.rotateGen(30, 15),
-          shape.morphGen(),
-        ]);
+      yield* stage.wait(20);
 
-        yield* stage.wait(20);
+      yield* shape.scaleGen([0, 1], 15);
 
-        yield* shape.scaleGen([0, 1], 15);
+      yield* yieldAll([
+        shape.reMorphGen(1),
+        shape.scaleGen([1, 1], 15),
+      ]);
 
-        yield* yieldAll([
-          shape.reMorphGen(1),
-          shape.scaleGen([1, 1], 15),
-        ]);
+      yield* stage.wait(1);
 
-        yield* stage.wait(1);
+      yield;
+    }
+  };
+  const renderingTask = renderingTaskGen();
 
-        yield;
-      }
-    };
-    const renderingTask = renderingTaskGen();
-
-    stage.renderingThread = () => {
-      renderingTask.next();
-    };
+  stage.renderingThread = () => {
+    renderingTask.next();
   };
 });
