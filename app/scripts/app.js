@@ -1,7 +1,5 @@
 import "babel-polyfill";
 
-let pattern;
-
 import Stage from "./Stage.js";
 import Shape from "./Shape.js";
 
@@ -45,17 +43,24 @@ $(() => {
 
     const renderingTaskGen = function* () {
       while (1) {
+        yield* shape.rotateGen(60, 30);
+
         yield* yieldAll([
-          shape.rotateGen(),
+          shape.rotateGen(30, 15),
           shape.morphGen(),
         ]);
 
-        yield* shape.scaleGen([0, 1]);
+        yield* stage.wait(20);
+
+        yield* shape.scaleGen([0, 1], 15);
 
         yield* yieldAll([
-          shape.reMorphGen(),
-          shape.scaleGen([1, 1]),
+          shape.reMorphGen(1),
+          shape.scaleGen([1, 1], 15),
         ]);
+
+        yield* stage.wait(1);
+
         yield;
       }
     };

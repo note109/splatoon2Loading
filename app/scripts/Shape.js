@@ -128,7 +128,7 @@ export default class Shape {
   }
 
   getCenter() {
-    return [50, 50];
+    return [100, 100];
   }
 
   getTriangleMatrix() {
