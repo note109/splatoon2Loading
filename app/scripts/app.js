@@ -5,6 +5,21 @@ let pattern;
 import Stage from "./Stage.js";
 import Shape from "./Shape.js";
 
+const yieldAll = function* (generators = []) {
+  while (1) {
+    const doneAll = generators.map((gen) => {
+      const genStat = gen.next();
+
+      return genStat.done;
+    }).every((done) => done);
+
+    if (doneAll) {
+      break;
+    }
+    yield;
+  }
+};
+
 // Debugger for position
 $("#stage").on("click", (e) => {
   const rect = e.target.getBoundingClientRect();
@@ -30,8 +45,7 @@ $(() => {
 
     const renderingTaskGen = function* () {
       while (1) {
-        yield* shape.rotateGen();
-        yield* shape.morphGen();
+        yield* yieldAll([shape.rotateGen(), shape.morphGen()]);
 
         const matrix = shape.matrix;
         yield* shape.scaleGen(-0.01, 0.25, matrix);
