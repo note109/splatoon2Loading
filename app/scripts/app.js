@@ -48,6 +48,7 @@ $(() => {
       yield* stage.wait(20);
 
       yield* shape.scaleGen([0, 1], 15);
+      shape.switchPattern();
 
       yield* yieldAll([
         shape.reMorphGen(1),
