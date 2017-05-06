@@ -26,7 +26,6 @@ export default class Shape {
     marieImg.onload = () => {
       this.mariePattern = this.ctx.createPattern(marieImg, "repeat");
     };
-
   }
 
   switchPattern() {
@@ -80,7 +79,7 @@ export default class Shape {
     });
 
     // fill
-    this.ctx.rotate(-calc.toRadian(this.angle));
+    this.ctx.rotate(-calc.toRadian(this.angle + 12));
     this.ctx.fillStyle = this.pattern;
     this.ctx.fill();
     this.ctx.restore();
