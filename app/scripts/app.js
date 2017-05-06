@@ -45,7 +45,10 @@ $(() => {
 
     const renderingTaskGen = function* () {
       while (1) {
-        yield* yieldAll([shape.rotateGen(), shape.morphGen()]);
+        yield* yieldAll([
+          shape.rotateGen(),
+          shape.morphGen(),
+        ]);
 
         yield* shape.scaleGen([0, 1]);
 
