@@ -92,7 +92,7 @@ export default class Shape {
   }
 
   * morphGen() {
-    let n = 60;
+    let n = 30;
     const distanceMap = this.getDistanceMap(
       this.getCircleMatrix(),
       this.getTriangleMatrix(),
