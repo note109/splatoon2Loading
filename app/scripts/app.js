@@ -38,16 +38,15 @@ $(() => {
 
   const renderingTaskGen = function* () {
     while (1) {
-      yield* shape.rotateGen(60, 30);
-
+      yield* shape.rotateGen(40, 20);
       yield* yieldAll([
-        shape.rotateGen(30, 15),
-        shape.morphGen(),
+        shape.rotateGen(20, 10),
+        shape.morphGen(30),
       ]);
 
-      yield* stage.wait(20);
+      yield* shape.rotateGen(270, 10);
 
-      yield* shape.scaleGen([0, 1], 15);
+      yield* shape.scaleGen([0, 1], 10);
       shape.switchPattern();
 
       yield* yieldAll([
@@ -55,7 +54,7 @@ $(() => {
         shape.scaleGen([1, 1], 15),
       ]);
 
-      yield* stage.wait(1);
+      yield* stage.wait(10);
 
       yield;
     }
