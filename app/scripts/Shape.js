@@ -113,39 +113,14 @@ export default class Shape {
     }
   }
 
-  * morphGen(n = 30) {
-    const distanceMap = this.getDistanceMap(
-      this.getCircleMatrix(),
-      this.getTriangleMatrix(),
-    );
+  * morphGen(matrixA, matrixB, n = 30) {
+    const distanceMap = this.getDistanceMap(matrixA, matrixB);
     const accelMap = this.getAccelMap(distanceMap, n);
 
     while(n--) {
       const nextMatrix = this.matrix.map((posAry, i) => {
         return posAry.map((pos, j) => {
           const nextPos = pos + accelMap[i][j] * 1;
-
-          return nextPos;
-        });
-      });
-
-      this.matrix = nextMatrix;
-
-      yield;
-    }
-  }
-
-  * reMorphGen(n = 30) {
-    const distanceMap = this.getDistanceMap(
-      this.getCircleMatrix([0.25, 1]),
-      this.getTriangleMatrix([0.25, 1]),
-    );
-    const accelMap = this.getAccelMap(distanceMap, n);
-
-    while(n--) {
-      const nextMatrix = this.matrix.map((posAry, i) => {
-        return posAry.map((pos, j) => {
-          const nextPos = pos + accelMap[i][j] * -1;
 
           return nextPos;
         });
