@@ -9,6 +9,32 @@ export default class Shape {
 
     this.scale = [1, 1];
     this.angle = 90;
+
+    this.calliePattern;
+    this.mariePattern;
+    this.pattern;
+
+    const callieImg = new Image();
+    callieImg.src = "../assets/callie.png";
+    callieImg.onload = () => {
+      this.calliePattern = this.ctx.createPattern(callieImg, "repeat");
+      this.pattern = this.calliePattern;
+    };
+
+    const marieImg = new Image();
+    marieImg.src = "../assets/marie.png";
+    marieImg.onload = () => {
+      this.mariePattern = this.ctx.createPattern(marieImg, "repeat");
+    };
+
+  }
+
+  switchPattern() {
+    if (this.pattern === this.calliePattern) {
+      this.pattern = this.mariePattern;
+    } else {
+      this.pattern = this.calliePattern;
+    }
   }
 
   getDistanceMap(m1, m2) {
@@ -37,21 +63,26 @@ export default class Shape {
 
   render() {
     this.ctx.save();
+    // scale, rotate
     this.ctx.translate(...this.getCenter());
     this.ctx.rotate(calc.toRadian(this.angle));
     this.ctx.scale(...this.scale);
 
+    // draw
     this.ctx.beginPath();
 
     const matrix = this.matrix;
 
     matrix.forEach((pos, i) => {
       const nPos = matrix[(i + 1) % 4];
-      this.ctx.moveTo(pos[0], pos[1]);
+      if (i === 0) this.ctx.moveTo(pos[0], pos[1]); // for fill
       this.ctx.bezierCurveTo(pos[2], pos[3], nPos[4], nPos[5], nPos[0], nPos[1]);
     });
 
-    this.ctx.stroke();
+    // fill
+    this.ctx.rotate(-calc.toRadian(this.angle));
+    this.ctx.fillStyle = this.pattern;
+    this.ctx.fill();
     this.ctx.restore();
   }
 
