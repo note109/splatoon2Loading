@@ -55,8 +55,7 @@ export default class Shape {
     this.ctx.restore();
   }
 
-  * scaleGen(scale = [1, 1]) {
-    let duration = 30;
+  * scaleGen(scale = [1, 1], duration = 30) {
     const scaleX = this.scale[0];
     const scaleY = this.scale[1];
     const accel = [
@@ -84,8 +83,7 @@ export default class Shape {
     }
   }
 
-  * morphGen() {
-    let n = 30;
+  * morphGen(n = 30) {
     const distanceMap = this.getDistanceMap(
       this.getCircleMatrix(),
       this.getTriangleMatrix(),
@@ -107,8 +105,7 @@ export default class Shape {
     }
   }
 
-  * reMorphGen() {
-    let n = 60;
+  * reMorphGen(n = 30) {
     const distanceMap = this.getDistanceMap(
       this.getCircleMatrix([0.25, 1]),
       this.getTriangleMatrix([0.25, 1]),
