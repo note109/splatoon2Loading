@@ -47,12 +47,12 @@ $(() => {
       while (1) {
         yield* yieldAll([shape.rotateGen(), shape.morphGen()]);
 
-        const matrix = shape.matrix;
-        yield* shape.scaleGen(-0.01, 0.25, matrix);
+        yield* shape.scaleGen([0, 1]);
 
-        yield* shape.reMorphGen();
-        yield* shape.scaleGen(0.01, 1, shape.getTriangleMatrix());
-        yield* stage.wait(30);
+        yield* yieldAll([
+          shape.reMorphGen(),
+          shape.scaleGen([1, 1]),
+        ]);
         yield;
       }
     };

@@ -39,6 +39,7 @@ export default class Shape {
     this.ctx.save();
     this.ctx.translate(...this.getCenter());
     this.ctx.rotate(calc.toRadian(this.angle));
+    this.ctx.scale(...this.scale);
 
     this.ctx.beginPath();
 
@@ -54,30 +55,24 @@ export default class Shape {
     this.ctx.restore();
   }
 
-  * scaleGen(addX, stopX, matrix) {
-    while(true) {
-      const scale = [
-        this.scale[0] + addX,
-        this.scale[1],
+  * scaleGen(scale = [1, 1]) {
+    let duration = 30;
+    const scaleX = this.scale[0];
+    const scaleY = this.scale[1];
+    const accel = [
+      (scale[0] - scaleX) / duration,
+      (scale[1] - scaleY) / duration,
+    ];
+
+    while(duration--) {
+      this.scale = [
+        this.scale[0] + accel[0],
+        this.scale[1] + accel[1],
       ];
-
-      if (this.scale[0] >= stopX && addX > 0) {
-        break;
-      }
-      if (this.scale[0] <= stopX && addX < 0) {
-        break;
-      }
-
-      this.scale = scale;
-
-      this.matrix = matrix.map((pos, i) => {
-        return pos.map((p, j) => {
-          return p * this.scale[j % 2];
-        });
-      });
-
       yield;
     }
+
+    this.scale = scale;
   }
 
   * rotateGen() {
@@ -141,7 +136,7 @@ export default class Shape {
     return [50, 50];
   }
 
-  getTriangleMatrix(scale = [1, 1]) {
+  getTriangleMatrix() {
     // Init position
     let matrix = [
       [0,   100, 0,   100, 0,   100],
@@ -149,13 +144,6 @@ export default class Shape {
       [100, 0,   100, 0,   100, 0],
       [50,  50,  50,  50,  50,  50],
     ];
-
-    // Scale size
-    matrix = matrix.map((pos, i) => {
-      return pos.map((p, j) => {
-        return p * scale[j % 2];
-      });
-    });
 
     // Base center position.
     const center = this.getCenter();
@@ -169,7 +157,7 @@ export default class Shape {
     return matrix;
   }
 
-  getCircleMatrix(scale = [1, 1]) {
+  getCircleMatrix() {
     const r = 50;
     const cx = 50;
     const cy = 50;
@@ -182,13 +170,6 @@ export default class Shape {
       [cx,     cy - r, cx - bz, cy - r,  cx + bz, cy - r],
       [cx - r, cy,     cx - r,  cy + bz, cx - r,  cy - bz],
     ];
-
-    // Scale size
-    matrix = matrix.map((pos, i) => {
-      return pos.map((p, j) => {
-        return p * scale[j % 2];
-      });
-    });
 
     // Base center position.
     const center = this.getCenter();
